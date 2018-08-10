@@ -12,13 +12,16 @@ class Index
 
     public function ken()
     {
-        try {
+        $GLOBALS['swoole_server']->task('sendSms');
+
+        return "短信发送成功";
+        /*try {
             $sms = new SmsSingleSender('1400096944', '3e283931e50258ad432858f24184c063');
-            $result = $sms->send(0, '86', '18910434780', '您的验证码是123123');
-            echo json_encode($result);
+            $result = $sms->sendWithParam('86', '18910434780', 130089, [123123]);
+            print_r($result);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
-        }
+        }*/
     }
 
     public function hello($name = 'ThinkPHP5')
